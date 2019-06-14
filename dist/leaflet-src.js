@@ -10586,6 +10586,12 @@ var GridLayer = Layer.extend({
 		// from `minNativeZoom` level and auto-scaled.
 		minNativeZoom: undefined,
 
+		// @option ceilZoom: boolean = false
+		// If set, tiles with fractional zoom level will be selected using ceil
+		// instead of rounding. It can be used to prevent larger than 1 scaling
+		// of a tile.
+		ceilZoom: false,
+
 		// @option noWrap: Boolean = false
 		// Whether the layer is wrapped around the antimeridian. If `true`, the
 		// GridLayer will only be displayed once at low zoom levels. Has no
@@ -10771,11 +10777,15 @@ var GridLayer = Layer.extend({
 
 		var now = +new Date(),
 		    nextFrame = false,
-		    willPrune = false;
+		    willPrune = false,
+		    endPrune = false;
 
 		for (var key in this._tiles) {
 			var tile = this._tiles[key];
-			if (!tile.current || !tile.loaded) { continue; }
+			if (!tile.current || !tile.loaded) {
+			  if (tile.active) { endPrune = true; }
+			  continue;
+			}
 
 			var fade = Math.min(1, (now - tile.loaded) / 200);
 
@@ -10792,6 +10802,7 @@ var GridLayer = Layer.extend({
 			}
 		}
 
+		if (!nextFrame && endPrune) { willPrune = true; }
 		if (willPrune && !this._noPrune) { this._pruneTiles(); }
 
 		if (nextFrame) {
@@ -11002,7 +11013,7 @@ var GridLayer = Layer.extend({
 	},
 
 	_setView: function (center, zoom, noPrune, noUpdate) {
-		var tileZoom = this._clampZoom(Math.round(zoom));
+		var tileZoom = this._clampZoom(this.options.ceilZoom ? Math.ceil(zoom) : Math.round(zoom));
 		if ((this.options.maxZoom !== undefined && tileZoom > this.options.maxZoom) ||
 		    (this.options.minZoom !== undefined && tileZoom < this.options.minZoom)) {
 			tileZoom = undefined;
