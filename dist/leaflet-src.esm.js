@@ -1,9 +1,9 @@
 /* @preserve
- * Leaflet 1.7.1, a JS library for interactive maps. http://leafletjs.com
+ * Leaflet 1.7.1+v1.7.1-gridlayer-fixes.b013329, a JS library for interactive maps. http://leafletjs.com
  * (c) 2010-2019 Vladimir Agafonkin, (c) 2010-2011 CloudMade
  */
 
-var version = "1.7.1";
+var version = "1.7.1+v1.7.1-gridlayer-fixes.b0133299";
 
 /*
  * @namespace Util
@@ -244,28 +244,29 @@ function cancelAnimFrame(id) {
 	}
 }
 
-var Util = ({
-  extend: extend,
-  create: create,
-  bind: bind,
-  get lastId () { return lastId; },
-  stamp: stamp,
-  throttle: throttle,
-  wrapNum: wrapNum,
-  falseFn: falseFn,
-  formatNum: formatNum,
-  trim: trim,
-  splitWords: splitWords,
-  setOptions: setOptions,
-  getParamString: getParamString,
-  template: template,
-  isArray: isArray,
-  indexOf: indexOf,
-  emptyImageUrl: emptyImageUrl,
-  requestFn: requestFn,
-  cancelFn: cancelFn,
-  requestAnimFrame: requestAnimFrame,
-  cancelAnimFrame: cancelAnimFrame
+
+var Util = Object.freeze({
+	extend: extend,
+	create: create,
+	bind: bind,
+	get lastId () { return lastId; },
+	stamp: stamp,
+	throttle: throttle,
+	wrapNum: wrapNum,
+	falseFn: falseFn,
+	formatNum: formatNum,
+	trim: trim,
+	splitWords: splitWords,
+	setOptions: setOptions,
+	getParamString: getParamString,
+	template: template,
+	isArray: isArray,
+	indexOf: indexOf,
+	emptyImageUrl: emptyImageUrl,
+	requestFn: requestFn,
+	cancelFn: cancelFn,
+	requestAnimFrame: requestAnimFrame,
+	cancelAnimFrame: cancelAnimFrame
 });
 
 // @class Class
@@ -1966,38 +1967,39 @@ function userAgentContains(str) {
 	return navigator.userAgent.toLowerCase().indexOf(str) >= 0;
 }
 
-var Browser = ({
-  ie: ie,
-  ielt9: ielt9,
-  edge: edge,
-  webkit: webkit,
-  android: android,
-  android23: android23,
-  androidStock: androidStock,
-  opera: opera,
-  chrome: chrome,
-  gecko: gecko,
-  safari: safari,
-  phantom: phantom,
-  opera12: opera12,
-  win: win,
-  ie3d: ie3d,
-  webkit3d: webkit3d,
-  gecko3d: gecko3d,
-  any3d: any3d,
-  mobile: mobile,
-  mobileWebkit: mobileWebkit,
-  mobileWebkit3d: mobileWebkit3d,
-  msPointer: msPointer,
-  pointer: pointer,
-  touch: touch,
-  mobileOpera: mobileOpera,
-  mobileGecko: mobileGecko,
-  retina: retina,
-  passiveEvents: passiveEvents,
-  canvas: canvas,
-  svg: svg,
-  vml: vml
+
+var Browser = Object.freeze({
+	ie: ie,
+	ielt9: ielt9,
+	edge: edge,
+	webkit: webkit,
+	android: android,
+	android23: android23,
+	androidStock: androidStock,
+	opera: opera,
+	chrome: chrome,
+	gecko: gecko,
+	safari: safari,
+	phantom: phantom,
+	opera12: opera12,
+	win: win,
+	ie3d: ie3d,
+	webkit3d: webkit3d,
+	gecko3d: gecko3d,
+	any3d: any3d,
+	mobile: mobile,
+	mobileWebkit: mobileWebkit,
+	mobileWebkit3d: mobileWebkit3d,
+	msPointer: msPointer,
+	pointer: pointer,
+	touch: touch,
+	mobileOpera: mobileOpera,
+	mobileGecko: mobileGecko,
+	retina: retina,
+	passiveEvents: passiveEvents,
+	canvas: canvas,
+	svg: svg,
+	vml: vml
 });
 
 /*
@@ -2494,7 +2496,8 @@ function enableImageDrag() {
 	off(window, 'dragstart', preventDefault);
 }
 
-var _outlineElement, _outlineStyle;
+var _outlineElement;
+var _outlineStyle;
 // @function preventOutline(el: HTMLElement)
 // Makes the [outline](https://developer.mozilla.org/docs/Web/CSS/outline)
 // of the element `el` invisible. Used internally by Leaflet to prevent
@@ -2545,35 +2548,36 @@ function getScale(element) {
 	};
 }
 
-var DomUtil = ({
-  TRANSFORM: TRANSFORM,
-  TRANSITION: TRANSITION,
-  TRANSITION_END: TRANSITION_END,
-  get: get,
-  getStyle: getStyle,
-  create: create$1,
-  remove: remove,
-  empty: empty,
-  toFront: toFront,
-  toBack: toBack,
-  hasClass: hasClass,
-  addClass: addClass,
-  removeClass: removeClass,
-  setClass: setClass,
-  getClass: getClass,
-  setOpacity: setOpacity,
-  testProp: testProp,
-  setTransform: setTransform,
-  setPosition: setPosition,
-  getPosition: getPosition,
-  get disableTextSelection () { return disableTextSelection; },
-  get enableTextSelection () { return enableTextSelection; },
-  disableImageDrag: disableImageDrag,
-  enableImageDrag: enableImageDrag,
-  preventOutline: preventOutline,
-  restoreOutline: restoreOutline,
-  getSizedParentNode: getSizedParentNode,
-  getScale: getScale
+
+var DomUtil = Object.freeze({
+	TRANSFORM: TRANSFORM,
+	TRANSITION: TRANSITION,
+	TRANSITION_END: TRANSITION_END,
+	get: get,
+	getStyle: getStyle,
+	create: create$1,
+	remove: remove,
+	empty: empty,
+	toFront: toFront,
+	toBack: toBack,
+	hasClass: hasClass,
+	addClass: addClass,
+	removeClass: removeClass,
+	setClass: setClass,
+	getClass: getClass,
+	setOpacity: setOpacity,
+	testProp: testProp,
+	setTransform: setTransform,
+	setPosition: setPosition,
+	getPosition: getPosition,
+	get disableTextSelection () { return disableTextSelection; },
+	get enableTextSelection () { return enableTextSelection; },
+	disableImageDrag: disableImageDrag,
+	enableImageDrag: enableImageDrag,
+	preventOutline: preventOutline,
+	restoreOutline: restoreOutline,
+	getSizedParentNode: getSizedParentNode,
+	getScale: getScale
 });
 
 /*
@@ -2854,21 +2858,24 @@ function isExternalTarget(el, e) {
 	return (related !== el);
 }
 
-var DomEvent = ({
-  on: on,
-  off: off,
-  stopPropagation: stopPropagation,
-  disableScrollPropagation: disableScrollPropagation,
-  disableClickPropagation: disableClickPropagation,
-  preventDefault: preventDefault,
-  stop: stop,
-  getMousePosition: getMousePosition,
-  getWheelDelta: getWheelDelta,
-  fakeStop: fakeStop,
-  skipped: skipped,
-  isExternalTarget: isExternalTarget,
-  addListener: on,
-  removeListener: off
+
+
+
+var DomEvent = Object.freeze({
+	on: on,
+	off: off,
+	stopPropagation: stopPropagation,
+	disableScrollPropagation: disableScrollPropagation,
+	disableClickPropagation: disableClickPropagation,
+	preventDefault: preventDefault,
+	stop: stop,
+	getMousePosition: getMousePosition,
+	getWheelDelta: getWheelDelta,
+	fakeStop: fakeStop,
+	skipped: skipped,
+	isExternalTarget: isExternalTarget,
+	addListener: on,
+	removeListener: off
 });
 
 /*
@@ -6205,16 +6212,17 @@ function _flat(latlngs) {
 	return isFlat(latlngs);
 }
 
-var LineUtil = ({
-  simplify: simplify,
-  pointToSegmentDistance: pointToSegmentDistance,
-  closestPointOnSegment: closestPointOnSegment,
-  clipSegment: clipSegment,
-  _getEdgeIntersection: _getEdgeIntersection,
-  _getBitCode: _getBitCode,
-  _sqClosestPointOnSegment: _sqClosestPointOnSegment,
-  isFlat: isFlat,
-  _flat: _flat
+
+var LineUtil = Object.freeze({
+	simplify: simplify,
+	pointToSegmentDistance: pointToSegmentDistance,
+	closestPointOnSegment: closestPointOnSegment,
+	clipSegment: clipSegment,
+	_getEdgeIntersection: _getEdgeIntersection,
+	_getBitCode: _getBitCode,
+	_sqClosestPointOnSegment: _sqClosestPointOnSegment,
+	isFlat: isFlat,
+	_flat: _flat
 });
 
 /*
@@ -6271,8 +6279,9 @@ function clipPolygon(points, bounds, round) {
 	return points;
 }
 
-var PolyUtil = ({
-  clipPolygon: clipPolygon
+
+var PolyUtil = Object.freeze({
+	clipPolygon: clipPolygon
 });
 
 /*
@@ -6369,10 +6378,13 @@ var Mercator = {
 
  */
 
-var index = ({
-  LonLat: LonLat,
-  Mercator: Mercator,
-  SphericalMercator: SphericalMercator
+
+
+
+var index = Object.freeze({
+	LonLat: LonLat,
+	Mercator: Mercator,
+	SphericalMercator: SphericalMercator
 });
 
 /*
@@ -10747,6 +10759,12 @@ var GridLayer = Layer.extend({
 		// from `minNativeZoom` level and auto-scaled.
 		minNativeZoom: undefined,
 
+		// @option ceilZoom: boolean = false
+		// If set, tiles with fractional zoom level will be selected using ceil
+		// instead of rounding. It can be used to prevent larger than 1 scaling
+		// of a tile.
+		ceilZoom: false,
+
 		// @option noWrap: Boolean = false
 		// Whether the layer is wrapped around the antimeridian. If `true`, the
 		// GridLayer will only be displayed once at low zoom levels. Has no
@@ -10932,11 +10950,15 @@ var GridLayer = Layer.extend({
 
 		var now = +new Date(),
 		    nextFrame = false,
-		    willPrune = false;
+		    willPrune = false,
+		    endPrune = false;
 
 		for (var key in this._tiles) {
 			var tile = this._tiles[key];
-			if (!tile.current || !tile.loaded) { continue; }
+			if (!tile.current || !tile.loaded) {
+			  if (tile.active) { endPrune = true; }
+			  continue;
+			}
 
 			var fade = Math.min(1, (now - tile.loaded) / 200);
 
@@ -10953,6 +10975,7 @@ var GridLayer = Layer.extend({
 			}
 		}
 
+		if (!nextFrame && endPrune) { willPrune = true; }
 		if (willPrune && !this._noPrune) { this._pruneTiles(); }
 
 		if (nextFrame) {
@@ -11164,7 +11187,7 @@ var GridLayer = Layer.extend({
 	},
 
 	_setView: function (center, zoom, noPrune, noUpdate) {
-		var tileZoom = Math.round(zoom);
+		var tileZoom = this.options.ceilZoom ? Math.ceil(zoom) : Math.round(zoom);
 		if ((this.options.maxZoom !== undefined && tileZoom > this.options.maxZoom) ||
 		    (this.options.minZoom !== undefined && tileZoom < this.options.minZoom)) {
 			tileZoom = undefined;
